@@ -142,6 +142,7 @@ namespace Ex04.Menus.Delegates
                 //        if (subItem.ChosenItem.GetInvocationList().Contains((ChosenItemDelegate)ShowItem))
                 //        {
                 //            Console.Clear();
+
                 //        }
                 //    }
                 //}
