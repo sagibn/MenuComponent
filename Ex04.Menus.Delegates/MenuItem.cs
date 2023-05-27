@@ -24,6 +24,7 @@ namespace Ex04.Menus.Delegates
         public MenuItem(string i_Name, ChosenItemDelegate i_Func)
         {
             Name = i_Name;
+            m_SubItems = new List<MenuItem>();
             ChosenItem += i_Func;
         }
 
@@ -64,7 +65,8 @@ namespace Ex04.Menus.Delegates
             if(i_Choice > 0)
             {
                 m_SubItems[i_Choice - 1].OnChosen();
-                OnChosen();
+                //Avoid clearing the screen after invoke leaf's methods
+                OnChosen(false);
             }
             else
             {
@@ -131,21 +133,14 @@ namespace Ex04.Menus.Delegates
             }
         }
 
-        protected virtual void OnChosen()
+        protected virtual void OnChosen(bool i_Clear = true)
         {
             if(ChosenItem != null)
             {
-                //if (m_SubItems.Count > 0)
-                //{
-                //    foreach (MenuItem subItem in m_SubItems)
-                //    {
-                //        if (subItem.ChosenItem.GetInvocationList().Contains((ChosenItemDelegate)ShowItem))
-                //        {
-                //            Console.Clear();
-
-                //        }
-                //    }
-                //}
+                if (i_Clear)
+                {
+                    Console.Clear();
+                }
 
                 ChosenItem.Invoke();
             }
