@@ -91,19 +91,19 @@ namespace Ex04.Menus.Delegates
 
         private int getChoiceFromUser()
         {
-            int userChoice = int.MinValue;
-            bool isValid = false;
+            int userChoice;
+            bool isValid;
 
-            while(!isValid)
+            do
             {
                 isValid = int.TryParse(Console.ReadLine(), out userChoice);
 
-                if(!isValid || userChoice > m_SubItems.Count || userChoice < 0)
+                if (!isValid || userChoice > m_SubItems.Count || userChoice < 0)
                 {
                     Console.WriteLine("Invalid input. Please try again:");
                     isValid = false;
                 }
-            }
+            } while(!isValid);
 
             return userChoice;
         }
