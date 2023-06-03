@@ -17,9 +17,6 @@ namespace Ex04.Menus.Interfaces
         public override void Show()
         {
             r_FunctionSelected?.Invoke();
-
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
         }
     }
 }

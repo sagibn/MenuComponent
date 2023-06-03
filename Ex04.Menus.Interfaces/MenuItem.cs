@@ -19,7 +19,10 @@ namespace Ex04.Menus.Interfaces
             m_ItemName = i_ItemName;
             m_MainMenu = i_MainMenu;
         }
-
+        public void OnSelection(MenuItem i_ItemSelected)
+        {
+            i_ItemSelected.Show();
+        }
         public string ItemName
         {
             get
@@ -47,10 +50,20 @@ namespace Ex04.Menus.Interfaces
         {
             bool backPressed;
             int counter, choice;
+            string exitOrBack;
 
             do
             {
-                Console.Clear();
+                if(this is MainMenu)
+                {
+                    exitOrBack = "Exit";
+                    Console.Clear();
+                }
+                else
+                {
+                    exitOrBack = "Back";
+                }
+
                 counter = 1;
                 Console.WriteLine(string.Format("**{0}**", m_ItemName));
                 Console.WriteLine("----------------------");
@@ -60,14 +73,19 @@ namespace Ex04.Menus.Interfaces
                     counter++;
                 }
 
-                Console.WriteLine("0 -> Back");
+                Console.WriteLine("0 -> {0}", exitOrBack);
                 Console.WriteLine("----------------------");
-                Console.WriteLine(string.Format("Enter your request: ({0} to {1} or press '0' to Back).", 1, r_ItemsList.Count));
+                Console.WriteLine(string.Format("Enter your request: ({0} to {1} or press '0' to {2}).", 1, r_ItemsList.Count, exitOrBack));
                 choice = askInputFromUser(out backPressed);
+                Console.Clear();
                 if(choice != 0)
                 {
                     choice -= 1;
                     r_ItemsList[choice].OnSelected();
+                }
+                else
+                {
+                    backPressed = true;
                 }
 
             }

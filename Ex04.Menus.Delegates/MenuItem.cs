@@ -18,7 +18,7 @@ namespace Ex04.Menus.Delegates
         {
             Name = i_Name;
             m_SubItems = new List<MenuItem>();
-            ChosenItem += ShowItem;
+            ChosenItem += Show;
         }
 
         public MenuItem(string i_Name, ChosenItemDelegate i_Func)
@@ -38,7 +38,7 @@ namespace Ex04.Menus.Delegates
             }
         }
 
-        public void ShowItem()
+        public void Show()
         {
             string firstChoice = "Back";
 

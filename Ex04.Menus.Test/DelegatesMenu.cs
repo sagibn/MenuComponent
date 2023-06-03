@@ -18,7 +18,7 @@ namespace Ex04.Menus.Test
 
         public void Show()
         {
-            m_MainMenu.ShowItem();
+            m_MainMenu.Show();
         }
 
         private void addSubMenusAndMethods()

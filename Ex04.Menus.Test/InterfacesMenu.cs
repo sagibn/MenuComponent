@@ -8,36 +8,36 @@ using Ex04.Menus.Interfaces;
 
 namespace Ex04.Menus.Test
 {
-    internal class InterfaceMainMenu
+    internal class InterfacesMenu
     {
         private MainMenu m_MainMenu;
 
-        public InterfaceMainMenu()
+        public InterfacesMenu()
         {
             m_MainMenu = new MainMenu("Interfaces Main Menu");
-            exampleInitialize();
+            initializeExample();
         }
 
-        private void exampleInitialize()
+        private void initializeExample()
         {
-            MenuItem mi1 = new MenuItem("Version and Spaces", m_MainMenu);
-            MenuItem mi2 = new MenuItem("Show Date/Time", m_MainMenu);
+            MenuItem menuItem1 = new MenuItem("Version and Spaces", m_MainMenu);
+            MenuItem menuItem2 = new MenuItem("Show Date/Time", m_MainMenu);
 
-            Function fm11 = new Function("Count Spaces", new InvokedMethods().CountSpaces, m_MainMenu);
-            Function fm12 = new Function("Show Version", new InvokedMethods().ShowVersion, m_MainMenu);
-            mi1.AddItem(fm11);
-            mi1.AddItem(fm12);
+            Function functionMenu11 = new Function("Count Spaces", new InvokedMethods().CountSpaces, m_MainMenu);
+            Function functionMenu12 = new Function("Show Version", new InvokedMethods().ShowVersion, m_MainMenu);
+            menuItem1.AddItem(functionMenu11);
+            menuItem1.AddItem(functionMenu12);
 
-            Function fm21 = new Function("Show Time", new InvokedMethods().ShowTime, m_MainMenu);
-            Function fm22 = new Function("Show Date", new InvokedMethods().ShowDate, m_MainMenu);
-            mi2.AddItem(fm21);
-            mi2.AddItem(fm22);
+            Function functionMenu21= new Function("Show Time", new InvokedMethods().ShowTime, m_MainMenu);
+            Function functionMenu22 = new Function("Show Date", new InvokedMethods().ShowDate, m_MainMenu);
+            menuItem2.AddItem(functionMenu21);
+            menuItem2.AddItem(functionMenu22);
 
-            m_MainMenu.AddMenuItem(mi1);
-            m_MainMenu.AddMenuItem(mi2);
+            m_MainMenu.AddItem(menuItem1);
+            m_MainMenu.AddItem(menuItem2);
         }
 
-        public void Start()
+        public void Show()
         {
             m_MainMenu.Show();
         }
