@@ -8,7 +8,7 @@ namespace Ex04.Menus.Interfaces
         protected readonly List<MenuItem> r_ItemsList = new List<MenuItem>();
         protected string m_ItemName;
         protected MainMenu m_MainMenu;
-        protected readonly List<IButtonFunctionality> m_ButtonFunctionalities = new List<IButtonFunctionality>();
+        protected readonly IButtonFunction m_ButtonFunctionalities;
 
         public MenuItem(string i_ItemName)
         {
@@ -21,16 +21,12 @@ namespace Ex04.Menus.Interfaces
             r_ItemsList = i_MenuItems;
         }
 
-        public MenuItem(string i_ItemName, IButtonFunctionality i_Functionality)
+        public MenuItem(string i_ItemName, IButtonFunction i_Functionality)
         {
             m_ItemName = i_ItemName;
-            this.AddFunctionality(i_Functionality);
+            this.m_ButtonFunctionalities = i_Functionality;
         }
 
-        public void AddFunctionality(IButtonFunctionality i_Functionality)
-        {
-            m_ButtonFunctionalities.Add(i_Functionality);
-        }
         public string ItemName
         {
             get
@@ -58,8 +54,7 @@ namespace Ex04.Menus.Interfaces
 
             else
             {
-                foreach (IButtonFunctionality functionality in m_ButtonFunctionalities)
-                    functionality.OnClick();
+                m_ButtonFunctionalities.OnClick();
             }
 
         }

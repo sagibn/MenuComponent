@@ -23,7 +23,7 @@ namespace Ex04.Menus.Test
             MenuItem VersionAndSpaces = new MenuItem("Version and Spaces");
             MenuItem DateTime = new MenuItem("Show Date/Time");
             MenuItem ShowVersion = new MenuItem("Show Version", new ShowVersionButton());
-            MenuItem CountUppercase = new MenuItem("Count Spaces", new CountSpaces());
+            MenuItem CountUppercase = new MenuItem("Count Spaces", new CountSpacesButton());
             VersionAndSpaces.AddMenuItem(ShowVersion);
             VersionAndSpaces.AddMenuItem(CountUppercase);
             MenuItem ShowDate = new MenuItem("Show Date", new ShowDateButton());

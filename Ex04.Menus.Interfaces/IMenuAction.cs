@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex04.Menus.Interfaces
 {
-        public interface IButtonFunctionality
+        public interface IButtonFunction
         {
             void OnClick();
         }
