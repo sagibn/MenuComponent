@@ -10,10 +10,10 @@ namespace Ex04.Menus.Test
         public static void Main()
         {
             DelegatesMenu delegatesMenu = new DelegatesMenu();
-            InterfacesMenu interfacesMenu = new InterfacesMenu();
+            Interfaces.MainMenu myMenuInterfaces = InterfacesMenu.BuildMainMenuInterfaces();
 
             delegatesMenu.Show();
-            interfacesMenu.Show();
+            myMenuInterfaces.Show();
         }
     }
 }

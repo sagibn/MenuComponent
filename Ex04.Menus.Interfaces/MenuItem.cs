@@ -8,20 +8,28 @@ namespace Ex04.Menus.Interfaces
         protected readonly List<MenuItem> r_ItemsList = new List<MenuItem>();
         protected string m_ItemName;
         protected MainMenu m_MainMenu;
+        protected readonly List<IButtonFunctionality> m_ButtonFunctionalities = new List<IButtonFunctionality>();
 
         public MenuItem(string i_ItemName)
         {
             m_ItemName = i_ItemName;
         }
 
-        public MenuItem(string i_ItemName, MainMenu i_MainMenu)
+        public MenuItem(string i_ItemName, List<MenuItem> i_MenuItems)
         {
             m_ItemName = i_ItemName;
-            m_MainMenu = i_MainMenu;
+            r_ItemsList = i_MenuItems;
         }
-        public void OnSelection(MenuItem i_ItemSelected)
+
+        public MenuItem(string i_ItemName, IButtonFunctionality i_Functionality)
         {
-            i_ItemSelected.Show();
+            m_ItemName = i_ItemName;
+            this.AddFunctionality(i_Functionality);
+        }
+
+        public void AddFunctionality(IButtonFunctionality i_Functionality)
+        {
+            m_ButtonFunctionalities.Add(i_Functionality);
         }
         public string ItemName
         {
@@ -31,7 +39,7 @@ namespace Ex04.Menus.Interfaces
             }
         }
 
-        public void AddItem(MenuItem i_Item)
+        public void AddMenuItem(MenuItem i_Item)
         {
             r_ItemsList.Add(i_Item);
         }
@@ -41,9 +49,19 @@ namespace Ex04.Menus.Interfaces
             r_ItemsList.Remove(i_Item);
         }
 
-        public void OnSelected()
+        public void ButtonClick()
         {
-            m_MainMenu.OnSelection(this);
+            if (r_ItemsList.Count > 0)
+            {
+                this.Show();
+            }
+
+            else
+            {
+                foreach (IButtonFunctionality functionality in m_ButtonFunctionalities)
+                    functionality.OnClick();
+            }
+
         }
 
         public virtual void Show()
@@ -81,7 +99,7 @@ namespace Ex04.Menus.Interfaces
                 if(choice != 0)
                 {
                     choice -= 1;
-                    r_ItemsList[choice].OnSelected();
+                    r_ItemsList[choice].ButtonClick();
                 }
                 else
                 {

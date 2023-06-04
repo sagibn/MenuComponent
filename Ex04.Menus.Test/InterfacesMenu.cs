@@ -15,31 +15,24 @@ namespace Ex04.Menus.Test
         public InterfacesMenu()
         {
             m_MainMenu = new MainMenu("Interfaces Main Menu");
-            initializeExample();
+            BuildMainMenuInterfaces();
         }
-
-        private void initializeExample()
+        public static MainMenu BuildMainMenuInterfaces()
         {
-            MenuItem menuItem1 = new MenuItem("Version and Spaces", m_MainMenu);
-            MenuItem menuItem2 = new MenuItem("Show Date/Time", m_MainMenu);
-
-            Function functionMenu11 = new Function("Count Spaces", new InvokedMethods().CountSpaces, m_MainMenu);
-            Function functionMenu12 = new Function("Show Version", new InvokedMethods().ShowVersion, m_MainMenu);
-            menuItem1.AddItem(functionMenu11);
-            menuItem1.AddItem(functionMenu12);
-
-            Function functionMenu21= new Function("Show Time", new InvokedMethods().ShowTime, m_MainMenu);
-            Function functionMenu22 = new Function("Show Date", new InvokedMethods().ShowDate, m_MainMenu);
-            menuItem2.AddItem(functionMenu21);
-            menuItem2.AddItem(functionMenu22);
-
-            m_MainMenu.AddItem(menuItem1);
-            m_MainMenu.AddItem(menuItem2);
-        }
-
-        public void Show()
-        {
-            m_MainMenu.Show();
+            MainMenu myMenu = new MainMenu("Interface Main Menu");
+            MenuItem VersionAndSpaces = new MenuItem("Version and Spaces");
+            MenuItem DateTime = new MenuItem("Show Date/Time");
+            MenuItem ShowVersion = new MenuItem("Show Version", new ShowVersionButton());
+            MenuItem CountUppercase = new MenuItem("Count Spaces", new CountSpaces());
+            VersionAndSpaces.AddMenuItem(ShowVersion);
+            VersionAndSpaces.AddMenuItem(CountUppercase);
+            MenuItem ShowDate = new MenuItem("Show Date", new ShowDateButton());
+            MenuItem ShowTime = new MenuItem("Show Time", new ShowTimeButton());
+            DateTime.AddMenuItem(ShowDate);
+            DateTime.AddMenuItem(ShowTime);
+            myMenu.AddMenuItem(VersionAndSpaces);
+            myMenu.AddMenuItem(DateTime);
+            return myMenu;
         }
     }
 }
